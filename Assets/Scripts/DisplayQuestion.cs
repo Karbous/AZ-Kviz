@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class DisplayQuestion : MonoBehaviour
 {
+    //TO DO must be refactored, it is handling too many things
+
     [SerializeField] Text questionText;
     [SerializeField] GameObject correctButton;
     [SerializeField] GameObject wrongButton;
@@ -15,11 +17,17 @@ public class DisplayQuestion : MonoBehaviour
     [SerializeField] QuestionList mainQuestionList;
     [SerializeField] PlayerList myPlayerList;
 
-    //TMP
-    [SerializeField] GameObject tile;
+    public delegate void ChangeTile(int newTileState, Color newTileColor);
+    public event ChangeTile changeTile;
+
+    public delegate void BlockOrUnblockTile();
+    public event BlockOrUnblockTile blockOrUnblockTile;
+
 
     Player firstToAnswer;
     Player activePlayer;
+
+
 
     private void Start()
     {
@@ -31,19 +39,38 @@ public class DisplayQuestion : MonoBehaviour
     {
         activePlayer = myPlayerList.players[myPlayerList.activePlayerIndex];
         firstToAnswer = activePlayer;
+        BlockAllTiles();
         DisplayCorrectWrongButtons();
         DisplayQuestionText();
     }
 
+    private void BlockAllTiles()
+    {
+        if (blockOrUnblockTile != null)
+        {
+            blockOrUnblockTile();
+        }
+    }
+
+    private void UnBlockAllTiles()
+    {
+        if (blockOrUnblockTile != null)
+        {
+            blockOrUnblockTile();
+        }
+    }
+
+
+
     public void CorrectAnswer()
     {
-        //TO DO change state and color of the tile to player who answer correctly
-        tile.GetComponent<TileState>().tileState = activePlayer.PlayerIndex;
-        tile.GetComponent<SpriteRenderer>().color = activePlayer.Color;
-
-
+        if (changeTile != null)
+        {
+            changeTile(activePlayer.PlayerIndex, activePlayer.Color);
+        }
         ChangeActivePlayer();
         CleanQuestion();
+        UnBlockAllTiles();
     }
 
 
@@ -55,25 +82,24 @@ public class DisplayQuestion : MonoBehaviour
         }
         else
         {
-            //TO DO changestate and color of tile to substitute
-            tile.GetComponent<TileState>().tileState = 2;
-            tile.GetComponent<SpriteRenderer>().color = Color.gray;
-
-
-
+            if (changeTile != null)
+            {
+                changeTile(2, Color.gray);
+            }
             ChangeActivePlayer();
             CleanQuestion();
+            UnBlockAllTiles();
         }
     }
 
     public void NotAnswered()
     {
-        //TO DO changestate and color of tile to substitute
-        tile.GetComponent<TileState>().tileState = 2;
-        tile.GetComponent<SpriteRenderer>().color = Color.gray;
-
-
+        if (changeTile != null)
+        {
+            changeTile(2, Color.gray);
+        }
         CleanQuestion();
+        UnBlockAllTiles();
     }
 
 
