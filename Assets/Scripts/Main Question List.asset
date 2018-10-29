@@ -11,9 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cbdbc662fd936418a8ac028ee9951d, type: 3}
   m_Name: Main Question List
   m_EditorClassIdentifier: 
-  list:
-  - Question 5
-  - Question 1
-  - Question 2
-  - Question 4
-  - Question 3
+  list: []

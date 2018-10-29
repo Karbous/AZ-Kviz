@@ -13,7 +13,10 @@ public class PlayerList : ScriptableObject
     {
         if (activePlayerIndex == 0) activePlayerIndex = 1;
         else activePlayerIndex = 0;
-
     }
 
+    public void AddTileToEdgeTiles(int tileNumber)
+    {
+        players[activePlayerIndex].EdgeTiles.Add(tileNumber);
+    }
 }

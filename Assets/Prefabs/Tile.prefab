@@ -138,7 +138,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: '1
+
+'
 --- !u!114 &114471424133947030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,7 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayQuestion: {fileID: 0}
+  myPlayerList: {fileID: 11400000, guid: c9c888b13b693364b9c906fe2776193e, type: 2}
+  winner: {fileID: 0}
   isBlocked: 0
+  tileNumber: 1
+  neighbors: 0200000003000000
+  leftEdge: 1
+  rightEdge: 1
+  bottomEdge: 0
   tileState: -1
 --- !u!212 &212092551794974028
 SpriteRenderer:

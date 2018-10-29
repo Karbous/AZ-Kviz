@@ -66,7 +66,7 @@ public class DisplayQuestion : MonoBehaviour
     {
         if (changeTile != null)
         {
-            changeTile(activePlayer.PlayerIndex, activePlayer.Color);
+            changeTile(myPlayerList.activePlayerIndex, activePlayer.Color);
         }
         ChangeActivePlayer();
         CleanQuestion();
@@ -125,7 +125,7 @@ public class DisplayQuestion : MonoBehaviour
     private void DisplayActivePlayer()
     {
         activePlayer = myPlayerList.players[myPlayerList.activePlayerIndex];
-        titleText.text = activePlayer.PlayerName;
+        titleText.text = activePlayer.Name;
         titleText.color = activePlayer.Color;
     }
 

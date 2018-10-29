@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Player
 {
-    public int PlayerIndex;
-    public string PlayerName;
+    public string Name;
     public Color Color;
+    public List<int> EdgeTiles;
 
-    public Player(string playerName, Color color)
+    public Player(string name, Color color)
     {
-        this.PlayerName = playerName;
+        this.Name = name;
         this.Color = color;
+        this.EdgeTiles = new List<int>();
     }
 }
