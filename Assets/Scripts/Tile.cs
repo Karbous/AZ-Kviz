@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] DisplayQuestion displayQuestion;
+    [SerializeField] QuestionManager questionManager;
     [SerializeField] PlayerList myPlayerList;
     [SerializeField] Winner winner;
+    [SerializeField] TileNumber tileNumberText;
     [SerializeField] private bool isBlocked = false;
     public int tileNumber;
     public int[] neighbors;
@@ -26,23 +27,27 @@ public class Tile : MonoBehaviour
 
     private void OnEnable()
     {
-        displayQuestion.blockOrUnblockTile += BlockOrUnblockTile;
+        questionManager.blockOrUnblockTile += BlockOrUnblockTile;
     }
 
 
     private void ChangeTile(int newTileState, Color newTileColor)
     {
-        displayQuestion.changeTile -= ChangeTile;
+        questionManager.changeTile -= ChangeTile;
         tileState = newTileState;
         GetComponent<SpriteRenderer>().color = newTileColor;
-        CheckForTheWinner();
+        if (tileState != 2)
+        {
+            tileNumberText.HideNumber();
+            CheckForWinner();
+        }
     }
 
-    private void CheckForTheWinner()
+    private void CheckForWinner()
     {
         if (leftEdge || rightEdge || bottomEdge)
         {
-            myPlayerList.AddTileToEdgeTiles(tileNumber);
+            myPlayerList.players[myPlayerList.activePlayerIndex].AddTileToEdgeTiles(tileNumber);
         }
         winner.CheckWinnerConditions();
     }
@@ -51,8 +56,9 @@ public class Tile : MonoBehaviour
     {
         if (tileState == -1 && isBlocked == false)
         {
-            displayQuestion.changeTile += ChangeTile;
-            displayQuestion.DisplayNewQuestion();
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+            questionManager.changeTile += ChangeTile;
+            questionManager.NewQuestion();
         }
     }
 
@@ -63,6 +69,6 @@ public class Tile : MonoBehaviour
 
     private void OnDisable()
     {
-        displayQuestion.blockOrUnblockTile -= BlockOrUnblockTile;
+        questionManager.blockOrUnblockTile -= BlockOrUnblockTile;
     }
 }

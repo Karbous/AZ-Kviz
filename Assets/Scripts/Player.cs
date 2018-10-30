@@ -14,4 +14,9 @@ public class Player
         this.Color = color;
         this.EdgeTiles = new List<int>();
     }
+
+    public void AddTileToEdgeTiles(int tileNumber)
+    {
+        EdgeTiles.Add(tileNumber);
+    }
 }

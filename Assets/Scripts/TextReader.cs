@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
-using System;
 
 public class TextReader : MonoBehaviour
 {
     string readPath;
     [SerializeField] QuestionList mainQuestionList;
     [SerializeField] int minNumberOfQuestions = 5;
+    [SerializeField] Text errorText;
+    [SerializeField] GameObject introCanvas;
 
 
     void Awake()
@@ -32,7 +34,8 @@ public class TextReader : MonoBehaviour
         }
         else
         {
-            Debug.Log("The text file with questions is missing!");
+            introCanvas.SetActive(false);
+            errorText.text = "The text file with questions is missing!";
         }
     }
 
@@ -40,7 +43,8 @@ public class TextReader : MonoBehaviour
     {
         if (mainQuestionList.list.Count < minNumberOfQuestions)
         {
-            Debug.Log("The number of questions in text file is too low!");
+            introCanvas.SetActive(false);
+            errorText.text = "The number of questions in text file is too low!";
         }
     }
 

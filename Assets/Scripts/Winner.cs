@@ -53,7 +53,7 @@ public class Winner : MonoBehaviour
         foreach (int neighborTileNumber in startingTile.neighbors)
         {
             Tile neighborTile = allTiles.tiles[neighborTileNumber - 1];
-            if (!tilesOwnedByPlayer.Contains(neighborTile))
+            if (!tilesOwnedByPlayer.Contains(neighborTile) && !neigborsToBeSearched.Contains(neighborTile))
             {
                 neigborsToBeSearched.Enqueue(neighborTile);
             }
