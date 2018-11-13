@@ -21,6 +21,8 @@ public class Winner : MonoBehaviour
 
         foreach (int tileNumber in playerEdgeTiles)
         {
+            tilesOwnedByPlayer.Clear();
+            leftEdge = rightEdge = bottomEdge = false; 
             Tile startingTile = allTiles.tiles[tileNumber - 1];
             SearchAllNeighboursIfOwnedByPlayer(startingTile);
             CheckIfPlayerWins();
@@ -28,7 +30,6 @@ public class Winner : MonoBehaviour
             {
                 break;
             }
-            tilesOwnedByPlayer.Clear();
         }
     }
 
