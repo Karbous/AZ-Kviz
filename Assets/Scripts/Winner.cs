@@ -6,6 +6,7 @@ public class Winner : MonoBehaviour
 {
     [SerializeField] PlayerList myPlayerList;
     [SerializeField] Tiles allTiles;
+    [SerializeField] GameEnd gameEnd;
 
     Queue<Tile> neigborsToBeSearched = new Queue<Tile>();
     List<Tile> tilesOwnedByPlayer = new List<Tile>();
@@ -79,7 +80,7 @@ public class Winner : MonoBehaviour
                 if (leftEdge && rightEdge && bottomEdge)
                 {
                     weHaveWinner = true;
-                    Debug.Log(myPlayerList.players[myPlayerList.activePlayerIndex].Name + " is the winner!");
+                    gameEnd.WeHaveWinner();
                     break;
                 }
             }

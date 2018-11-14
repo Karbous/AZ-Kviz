@@ -11,6 +11,7 @@ public class QuestionManager : MonoBehaviour
     Player firstToAnswer;
     Player activePlayer;
     QuestionUI questionUI;
+    int currentTileState = -1;
 
     public delegate void ChangeTile(int newTileState, Color newTileColor);
     public event ChangeTile changeTile;
@@ -25,8 +26,9 @@ public class QuestionManager : MonoBehaviour
         questionUI.CleanQuestion(activePlayer);
     }
 
-    public void NewQuestion()
+    public void NewQuestion(int tileState)
     {
+        currentTileState = tileState;
         BlockAllTiles();
         LoadActivePlayer();
         firstToAnswer = activePlayer;
@@ -47,20 +49,28 @@ public class QuestionManager : MonoBehaviour
 
     public void WrongAnswer()
     {
-        if (activePlayer == firstToAnswer)
+        if (currentTileState == -1)
         {
-            ChangeActivePlayer();
-            questionUI.QuestionForOtherPlayer(activePlayer);
+            if (activePlayer == firstToAnswer)
+            {
+                ChangeActivePlayer();
+                questionUI.QuestionForOtherPlayer(activePlayer);
+            }
+            else
+            {
+                if (changeTile != null)
+                {
+                    changeTile(2, Color.gray);
+                }
+                ChangeActivePlayer();
+                questionUI.CleanQuestion(activePlayer);
+                UnBlockAllTiles();
+            }
         }
         else
         {
-            if (changeTile != null)
-            {
-                changeTile(2, Color.gray);
-            }
             ChangeActivePlayer();
-            questionUI.CleanQuestion(activePlayer);
-            UnBlockAllTiles();
+            CorrectAnswer();
         }
     }
 

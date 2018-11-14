@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &65926809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,10 +422,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 1
     m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The number of questions in text file is too low!
+  m_Text: 
 --- !u!222 &407320271
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632360801
 GameObject:
@@ -1010,7 +1010,7 @@ RectTransform:
   - {fileID: 1759509547}
   - {fileID: 632360802}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1688,7 +1688,7 @@ RectTransform:
   - {fileID: 1352796381}
   - {fileID: 679653173}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1805,6 +1805,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainQuestionList: {fileID: 11400000, guid: c153a4f2545cbe3459f6d4b43be63537, type: 2}
+  substituteQuestionList: {fileID: 11400000, guid: 8722c4bd1e2d3f24a8997cbede92d5e0,
+    type: 2}
 --- !u!114 &1417185182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,7 +1820,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainQuestionList: {fileID: 11400000, guid: c153a4f2545cbe3459f6d4b43be63537, type: 2}
-  minNumberOfQuestions: 5
+  substituteQuestionList: {fileID: 11400000, guid: 8722c4bd1e2d3f24a8997cbede92d5e0,
+    type: 2}
   errorText: {fileID: 407320270}
   introCanvas: {fileID: 1022676357}
 --- !u!4 &1417185183
@@ -2032,6 +2035,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1554477932193224, guid: 80b2ce79c02dfe54db1b40458741bda7, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80b2ce79c02dfe54db1b40458741bda7, type: 2}
   m_IsPrefabAsset: 0
@@ -2163,6 +2170,18 @@ Prefab:
       propertyPath: introCanvas
       value: 
       objectReference: {fileID: 1022676357}
+    - target: {fileID: 114845813485355558, guid: be654a98e62e84b49906f8f21398e25c,
+        type: 2}
+      propertyPath: substituteQuestionList
+      value: 
+      objectReference: {fileID: 11400000, guid: 8722c4bd1e2d3f24a8997cbede92d5e0,
+        type: 2}
+    - target: {fileID: 114025202080018260, guid: be654a98e62e84b49906f8f21398e25c,
+        type: 2}
+      propertyPath: substituteQuestionList
+      value: 
+      objectReference: {fileID: 11400000, guid: 8722c4bd1e2d3f24a8997cbede92d5e0,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be654a98e62e84b49906f8f21398e25c, type: 2}
   m_IsPrefabAsset: 0

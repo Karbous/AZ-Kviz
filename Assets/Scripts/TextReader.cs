@@ -6,21 +6,24 @@ using System.IO;
 
 public class TextReader : MonoBehaviour
 {
-    string readPath;
+    string readPathMainQuestions;
+    string readPathSubstituteQuestions;
+
     [SerializeField] QuestionList mainQuestionList;
-    [SerializeField] int minNumberOfQuestions = 5;
+    [SerializeField] QuestionList substituteQuestionList;
     [SerializeField] Text errorText;
     [SerializeField] GameObject introCanvas;
 
 
     void Awake()
     {
-        readPath = "C:/txt/questions.txt";
-        ReadQuestionsTextFile(readPath);
-        CheckNumberOfQuestions();
-	}
+        readPathMainQuestions = Application.dataPath + "/txt/questions.txt";
+        readPathSubstituteQuestions = Application.dataPath + "/txt/substitute_questions.txt";
+        ReadQuestionsTextFile(readPathMainQuestions, mainQuestionList);
+        ReadQuestionsTextFile(readPathSubstituteQuestions, substituteQuestionList);
+    }
 
-    private void ReadQuestionsTextFile(string readPath)
+    private void ReadQuestionsTextFile(string readPath, QuestionList questionList)
     {
         if (File.Exists(readPath))
         {
@@ -28,7 +31,7 @@ public class TextReader : MonoBehaviour
 
             while (!streamReader.EndOfStream)
             {
-                mainQuestionList.list.Add(streamReader.ReadLine());
+                questionList.list.Add(streamReader.ReadLine());
             }
             streamReader.Close();
         }
@@ -38,14 +41,4 @@ public class TextReader : MonoBehaviour
             errorText.text = "The text file with questions is missing!";
         }
     }
-
-    private void CheckNumberOfQuestions()
-    {
-        if (mainQuestionList.list.Count < minNumberOfQuestions)
-        {
-            introCanvas.SetActive(false);
-            errorText.text = "The number of questions in text file is too low!";
-        }
-    }
-
 }
