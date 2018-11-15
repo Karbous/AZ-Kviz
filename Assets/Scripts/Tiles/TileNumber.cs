@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TileNumber : MonoBehaviour {
 
@@ -9,11 +9,11 @@ public class TileNumber : MonoBehaviour {
 
 	void Awake()
     {
-        GetComponent<Text>().text = tile.tileNumber.ToString();
+        GetComponent<TextMeshProUGUI>().text = tile.tileNumber.ToString();
 	}
 
     public void HideNumber()
     {
-        GetComponent<Text>().text = "";
+        GetComponent<TextMeshProUGUI>().text = "";
     }
 }

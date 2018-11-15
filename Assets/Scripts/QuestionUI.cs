@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class QuestionUI : MonoBehaviour
 {
-    [SerializeField] Text activePlayerText;
-    [SerializeField] Text questionText;
+    [SerializeField] TextMeshProUGUI activePlayerText;
+    [SerializeField] TextMeshProUGUI questionText;
     [SerializeField] GameObject correctButton;
     [SerializeField] GameObject wrongButton;
     [SerializeField] GameObject notAnsweredButton;
+    [SerializeField] Timer timer;
+
 
     [SerializeField] QuestionList mainQuestionList;
+    [SerializeField] QuestionList substituteQuestionList;
 
-    public void DisplayNewQuestion()
+    public void DisplayNewQuestion(int tileState)
     {
         DisplayCorrectWrongButtons();
-        DisplayQuestionText();
+        DisplayQuestionText(tileState);
+        timer.StartTimer();
     }
 
     public void CleanQuestion(Player activePlayer)
@@ -44,12 +48,23 @@ public class QuestionUI : MonoBehaviour
         questionText.text = "";
     }
 
-    private void DisplayQuestionText()
+    private void DisplayQuestionText(int tileState)
     {
-        if (mainQuestionList.list.Count > 0)
+        QuestionList currentQuestionList;
+        if (tileState == -1)
         {
-            questionText.text = mainQuestionList.list[0];
-            mainQuestionList.list.RemoveAt(0);
+            currentQuestionList = mainQuestionList;
+        }
+        else
+        {
+            currentQuestionList = substituteQuestionList;
+        }
+
+
+        if (currentQuestionList.list.Count > 0)
+        {
+            questionText.text = currentQuestionList.list[0];
+            currentQuestionList.list.RemoveAt(0);
         }
         else
         {

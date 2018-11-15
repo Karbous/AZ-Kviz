@@ -7,6 +7,6 @@ public class PlayAgain : MonoBehaviour
 {
     public void playAgain()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
     }
 }

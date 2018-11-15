@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuestionManager : MonoBehaviour
 {
     [SerializeField] PlayerList myPlayerList;
+    [SerializeField] Timer timer;
 
     Player firstToAnswer;
     Player activePlayer;
@@ -32,11 +32,12 @@ public class QuestionManager : MonoBehaviour
         BlockAllTiles();
         LoadActivePlayer();
         firstToAnswer = activePlayer;
-        questionUI.DisplayNewQuestion();
+        questionUI.DisplayNewQuestion(currentTileState);
     }
 
     public void CorrectAnswer()
     {
+        timer.StopTimer();
         if (changeTile != null)
         {
             changeTile(myPlayerList.activePlayerIndex, activePlayer.Color);
@@ -49,6 +50,7 @@ public class QuestionManager : MonoBehaviour
 
     public void WrongAnswer()
     {
+        timer.StopTimer();
         if (currentTileState == -1)
         {
             if (activePlayer == firstToAnswer)

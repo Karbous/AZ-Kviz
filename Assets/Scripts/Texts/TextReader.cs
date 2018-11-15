@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
+using TMPro;
 
 public class TextReader : MonoBehaviour
 {
@@ -11,14 +11,15 @@ public class TextReader : MonoBehaviour
 
     [SerializeField] QuestionList mainQuestionList;
     [SerializeField] QuestionList substituteQuestionList;
-    [SerializeField] Text errorText;
-    [SerializeField] GameObject introCanvas;
+    [SerializeField] GameObject error;
+    [SerializeField] GameObject newGameButton;
+    public string errorText;
 
 
-    void Awake()
+    void Start()
     {
-        readPathMainQuestions = Application.dataPath + "/txt/questions.txt";
-        readPathSubstituteQuestions = Application.dataPath + "/txt/substitute_questions.txt";
+        readPathMainQuestions = Application.dataPath + "/txt/hlavni_otazky.txt";
+        readPathSubstituteQuestions = Application.dataPath + "/txt/nahradni_otazky.txt";
         ReadQuestionsTextFile(readPathMainQuestions, mainQuestionList);
         ReadQuestionsTextFile(readPathSubstituteQuestions, substituteQuestionList);
     }
@@ -37,8 +38,9 @@ public class TextReader : MonoBehaviour
         }
         else
         {
-            introCanvas.SetActive(false);
-            errorText.text = "The text file with questions is missing!";
+            newGameButton.SetActive(false);
+            error.SetActive(true);
+            error.GetComponentInChildren<TextMeshProUGUI>().text += errorText + "\n" + readPath + "\n";
         }
     }
 }
