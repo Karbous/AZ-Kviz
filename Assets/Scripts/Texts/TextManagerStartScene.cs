@@ -7,7 +7,6 @@ public class TextManagerStartScene : MonoBehaviour
 {
     [SerializeField] LanguageSet languageSet;
 
-    [SerializeField] TextMeshProUGUI newGameButtonText;
     [SerializeField] TextMeshProUGUI quitGameButtonText;
     [SerializeField] TextMeshProUGUI startGameButtonText;
     [SerializeField] TextMeshProUGUI player1NameInputField;
@@ -19,7 +18,7 @@ public class TextManagerStartScene : MonoBehaviour
     private void Awake()
     {
         currentLanguage = languageSet.currentLanguage;
-        newGameButtonText.text = currentLanguage.newGame;
+
         quitGameButtonText.text = currentLanguage.quit;
         startGameButtonText.text = currentLanguage.startGame;
         player1NameInputField.text = currentLanguage.player1Name;

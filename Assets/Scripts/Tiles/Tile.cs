@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour
     [SerializeField] PlayerList myPlayerList;
     [SerializeField] Winner winner;
     [SerializeField] TileNumber tileNumberText;
+    [SerializeField] AudioPlayer audioPlayer;
     public bool isBlocked = false;
     public int tileNumber;
     public int[] neighbors;
@@ -58,9 +59,18 @@ public class Tile : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.yellow;
             questionManager.changeTile += ChangeTile;
-            questionManager.NewQuestion(tileState);
+            StartCoroutine(PlayClickSoundAndLoadNewQuestion());
         }
     }
+
+    IEnumerator PlayClickSoundAndLoadNewQuestion()
+    {
+        audioPlayer.PlayTileClickSound();
+        yield return new WaitUntil(() => audioPlayer.audioSource.isPlaying == false);
+        questionManager.NewQuestion(tileState);
+    }
+
+
 
     private void BlockOrUnblockTile()
     {

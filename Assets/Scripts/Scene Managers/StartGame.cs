@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Quit : MonoBehaviour
+public class StartGame : MonoBehaviour
 {
     [SerializeField] AudioPlayer audioPlayer;
 
-    public void QuitGame()
+    public void StartNewGame()
     {
-        StartCoroutine(PlayClickSoundAndQuitGame());
+        GetComponent<PlayerCreator>().CreatePlayers();
+        StartCoroutine(PlayClickSoundAndLoadNewGame());
     }
 
-    IEnumerator PlayClickSoundAndQuitGame()
+    IEnumerator PlayClickSoundAndLoadNewGame()
     {
         audioPlayer.PlayButtonClickSound();
         yield return new WaitUntil(() => audioPlayer.audioSource.isPlaying == false);
-        Application.Quit();
+        SceneManager.LoadScene("Game");
     }
 }

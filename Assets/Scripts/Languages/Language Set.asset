@@ -15,4 +15,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e07d8cc5d405dd49b34c5c8d5c12ecc, type: 2}
   - {fileID: 11400000, guid: e0f7ac895d2f2f3458f0a3e75f2a4f47, type: 2}
   - {fileID: 11400000, guid: 31afcc987262b1a42a70f50c4e9a05aa, type: 2}
-  currentLanguage: {fileID: 11400000, guid: e0f7ac895d2f2f3458f0a3e75f2a4f47, type: 2}
+  currentLanguage: {fileID: 0}

@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Language")]
 public class Language : ScriptableObject
 {
-    public string newGame;
     public string quit;
     public string startGame;
     public string player1Name;
