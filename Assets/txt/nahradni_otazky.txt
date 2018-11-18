@@ -1,3 +1,4 @@
+* Øádky zaèínající * a prázné øádky budou ignorovány / Lines with * at the beginning and empty lines will be ignored.
 SQuestion 1
 SQuestion 2
 SQuestion 3

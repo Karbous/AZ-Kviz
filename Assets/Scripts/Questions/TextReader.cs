@@ -18,6 +18,8 @@ public class TextReader : MonoBehaviour
 
     void Awake()
     {
+        mainQuestionList.list.Clear();
+        substituteQuestionList.list.Clear();
         readPathMainQuestions = Application.dataPath + "/txt/hlavni_otazky.txt";
         readPathSubstituteQuestions = Application.dataPath + "/txt/nahradni_otazky.txt";
         ReadQuestionsTextFile(readPathMainQuestions, mainQuestionList);
@@ -32,7 +34,12 @@ public class TextReader : MonoBehaviour
 
             while (!streamReader.EndOfStream)
             {
-                questionList.list.Add(streamReader.ReadLine());
+                string newQuestion = streamReader.ReadLine();
+                newQuestion.Trim();
+                if (newQuestion.Length > 0 && newQuestion[0] != '*')
+                {
+                    questionList.list.Add(newQuestion);
+                }
             }
             streamReader.Close();
         }
