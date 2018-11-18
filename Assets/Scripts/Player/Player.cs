@@ -8,9 +8,8 @@ public class Player
     public Color Color;
     public List<int> EdgeTiles;
 
-    public Player(string name, Color color)
+    public Player(Color color)
     {
-        this.Name = name;
         this.Color = color;
         this.EdgeTiles = new List<int>();
     }
@@ -18,5 +17,10 @@ public class Player
     public void AddTileToEdgeTiles(int tileNumber)
     {
         EdgeTiles.Add(tileNumber);
+    }
+
+    public void ClearEdgeTiles()
+    {
+        EdgeTiles.Clear();
     }
 }

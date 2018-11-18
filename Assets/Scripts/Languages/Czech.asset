@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6e4fe063e2f3f4c8c72b84afffcd83, type: 3}
   m_Name: Czech
   m_EditorClassIdentifier: 
-  newGame: "Nov\xE1 hra"
   quit: Konec
   startGame: "Za\u010Dni hru"
   player1Name: "Jm\xE9no 1. hr\xE1\u010De"
@@ -19,3 +18,5 @@ MonoBehaviour:
   errorText: "Soubor ot\xE1zek nenalzen! Zkontolujte soubor:"
   playAgain: Hraj znovu
   theWinnerIs: "Vyhr\xE1v\xE1"
+  noMoreQuestions: "Ot\xE1zky byly vy\u010Derp\xE1ny. Ukon\u010Dete hru a nahrajte
+    nov\xE9 ot\xE1zky."

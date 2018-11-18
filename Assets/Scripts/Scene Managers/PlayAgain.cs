@@ -5,8 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayAgain : MonoBehaviour
 {
-    public void playAgain()
+    public delegate void ResetGame();
+    public event ResetGame resetGame;
+
+    private void Start()
     {
-        SceneManager.LoadScene("Game");
+        resetGame += HidePlayAgainButton;
+    }
+
+    private void HidePlayAgainButton()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ResetGameWhenClicked()
+    {
+        resetGame();
     }
 }

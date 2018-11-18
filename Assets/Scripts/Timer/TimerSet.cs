@@ -8,6 +8,8 @@ public class TimerSet : MonoBehaviour
     [SerializeField] Timer timer;
     [SerializeField] TextMeshProUGUI timeLimitText;
     [SerializeField] GameObject timeLimit;
+    [SerializeField] float upperTimerLimit = 20.0f;
+    [SerializeField] float lowerTimerLimit = 1.0f;
 
     private void Start()
     {
@@ -21,7 +23,7 @@ public class TimerSet : MonoBehaviour
 
     public void IncreaseTimeLimit()
     {
-        if (timer.timeLimitInSeconds < 30)
+        if (timer.timeLimitInSeconds < upperTimerLimit)
         {
             timer.timeLimitInSeconds += 1;
             timeLimitText.text = timer.timeLimitInSeconds.ToString();
@@ -30,7 +32,7 @@ public class TimerSet : MonoBehaviour
 
     public void DecreaseTimeLimit()
     {
-        if (timer.timeLimitInSeconds > 1)
+        if (timer.timeLimitInSeconds > lowerTimerLimit)
         {
             timer.timeLimitInSeconds -= 1;
             timeLimitText.text = timer.timeLimitInSeconds.ToString();

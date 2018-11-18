@@ -8,6 +8,12 @@ public class AudioPlayer : MonoBehaviour
 
     [SerializeField] AudioClip buttonClick;
     [SerializeField] AudioClip tileClick;
+    [SerializeField] AudioClip wrongButton;
+    [SerializeField] AudioClip correctButton;
+    [SerializeField] AudioClip winner;
+    [SerializeField] AudioClip timerTicking;
+    [SerializeField] AudioClip timerStop;
+    [SerializeField] AudioClip notAnsweredButton;
 
     private void Start()
     {
@@ -24,15 +30,39 @@ public class AudioPlayer : MonoBehaviour
         PlaySound(tileClick);
     }
 
+    public void PlayWrongSound()
+    {
+        PlaySound(wrongButton);
+    }
 
+    public void PlayCorrectSound()
+    {
+        PlaySound(correctButton);
+    }
 
+    public void PlayWinnerSound()
+    {
+        PlaySound(winner);
+    }
 
+    public void PlayTimerTicking()
+    {
+        PlaySound(timerTicking);
+    }
 
+    public void PlayTimerStop()
+    {
+        PlaySound(timerStop);
+    }
+
+    public void PlayNotAnswered()
+    {
+        PlaySound(notAnsweredButton);
+    }
 
     private void PlaySound(AudioClip audioClip)
     {
         audioSource.clip = audioClip;
         audioSource.Play();
     }
-
 }

@@ -10,16 +10,23 @@ public class GameEnd : MonoBehaviour
     [SerializeField] Tiles tiles;
     [SerializeField] TextMeshProUGUI activePlayerText;
     [SerializeField] GameObject playAgainButton;
-    [SerializeField] GameObject quitButton;
+    [SerializeField] PlayAgain playAgain;
+    [SerializeField] AudioPlayer audioPlayer;
 
-    public string theWinnerIs;
+    [HideInInspector] public string theWinnerIs;
+
+    private void OnEnable()
+    {
+        playAgain.resetGame += ResetGame;
+    }
 
     public void WeHaveWinner()
     {
         BlockAllTiles();
         HideActivePlayerText();
         ShowWinningScreen();
-        ShowButtons();
+        ShowButton();
+        audioPlayer.PlayWinnerSound();
     }
 
     private void BlockAllTiles()
@@ -41,9 +48,20 @@ public class GameEnd : MonoBehaviour
         activePlayerText.enabled = false;
     }
 
-    private void ShowButtons()
+    private void ShowButton()
     {
         playAgainButton.SetActive(true);
-        quitButton.SetActive(true);
     }
+
+    private void ResetGame()
+    {
+        winnerText.text = "";
+        activePlayerText.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        playAgain.resetGame += ResetGame;
+    }
+
 }

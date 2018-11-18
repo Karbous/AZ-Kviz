@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
     [SerializeField] AudioPlayer audioPlayer;
+    [SerializeField] GameObject game;
+    [SerializeField] PlayerList playerList;
 
     public void StartNewGame()
     {
-        GetComponent<PlayerCreator>().CreatePlayers();
         StartCoroutine(PlayClickSoundAndLoadNewGame());
     }
 
@@ -17,6 +18,8 @@ public class StartGame : MonoBehaviour
     {
         audioPlayer.PlayButtonClickSound();
         yield return new WaitUntil(() => audioPlayer.audioSource.isPlaying == false);
-        SceneManager.LoadScene("Game");
+        playerList.ReadPlayersNames();
+        game.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Tile : MonoBehaviour
     [SerializeField] Winner winner;
     [SerializeField] TileNumber tileNumberText;
     [SerializeField] AudioPlayer audioPlayer;
+    [SerializeField] PlayAgain playAgain;
+
     public bool isBlocked = false;
     public int tileNumber;
     public int[] neighbors;
@@ -29,14 +32,14 @@ public class Tile : MonoBehaviour
     private void OnEnable()
     {
         questionManager.blockOrUnblockTile += BlockOrUnblockTile;
+        playAgain.resetGame += ResetTile;
     }
-
 
     private void ChangeTile(int newTileState, Color newTileColor)
     {
         questionManager.changeTile -= ChangeTile;
         tileState = newTileState;
-        GetComponent<SpriteRenderer>().color = newTileColor;
+        GetComponent<Image>().color = newTileColor;
         if (tileState != 2)
         {
             tileNumberText.HideNumber();
@@ -53,11 +56,11 @@ public class Tile : MonoBehaviour
         winner.CheckWinnerConditions();
     }
 
-    private void OnMouseDown()
+    public void MouseClick()
     {
         if ((tileState == -1 || tileState == 2) && isBlocked == false)
         {
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+            GetComponent<Image>().color = Color.yellow;
             questionManager.changeTile += ChangeTile;
             StartCoroutine(PlayClickSoundAndLoadNewQuestion());
         }
@@ -70,15 +73,22 @@ public class Tile : MonoBehaviour
         questionManager.NewQuestion(tileState);
     }
 
-
-
     private void BlockOrUnblockTile()
     {
         isBlocked = !isBlocked;
     }
 
+    private void ResetTile()
+    {
+        isBlocked = false;
+        tileState = -1;
+        GetComponent<Image>().color = Color.white;
+        tileNumberText.ShowNumber();
+    }
+
     private void OnDisable()
     {
         questionManager.blockOrUnblockTile -= BlockOrUnblockTile;
+        playAgain.resetGame -= ResetTile;
     }
 }

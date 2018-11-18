@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6e4fe063e2f3f4c8c72b84afffcd83, type: 3}
   m_Name: English
   m_EditorClassIdentifier: 
-  newGame: New Game
   quit: Quit
   startGame: Start Game
   player1Name: Player 1 Name
@@ -19,3 +18,4 @@ MonoBehaviour:
   errorText: 'Questions file not found! Check file:'
   playAgain: Play Again
   theWinnerIs: The winner is
+  noMoreQuestions: There are no more questions! Quit game and load more questions.

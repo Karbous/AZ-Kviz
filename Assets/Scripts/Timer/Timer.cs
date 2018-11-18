@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] Image timerImage;
+    [SerializeField] AudioPlayer audioPlayer;
     public float timeLimitInSeconds = 5.0f;
-    [SerializeField] private bool isRunning = false;
+
+
+    private bool isRunning = false;
     private float remainingTime;
 
 	void Update()
@@ -19,12 +22,14 @@ public class Timer : MonoBehaviour
             if (remainingTime <= 0)
             {
                 isRunning = false;
+                audioPlayer.PlayTimerStop();
             }
         }
 	}
 
     public void StartTimer()
     {
+        audioPlayer.PlayTimerTicking();
         remainingTime = timeLimitInSeconds;
         isRunning = true;
     }

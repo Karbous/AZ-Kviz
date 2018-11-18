@@ -7,6 +7,7 @@ public class Winner : MonoBehaviour
     [SerializeField] PlayerList myPlayerList;
     [SerializeField] Tiles allTiles;
     [SerializeField] GameEnd gameEnd;
+    [SerializeField] PlayAgain playAgain;
 
     Queue<Tile> neigborsToBeSearched = new Queue<Tile>();
     List<Tile> tilesOwnedByPlayer = new List<Tile>();
@@ -15,6 +16,11 @@ public class Winner : MonoBehaviour
     bool rightEdge = false;
     bool bottomEdge = false;
     bool weHaveWinner = false;
+
+    private void OnEnable()
+    {
+        playAgain.resetGame += ResetForNewGame;
+    }
 
     public void CheckWinnerConditions()
     {
@@ -86,4 +92,15 @@ public class Winner : MonoBehaviour
             }
         }
     }
+
+    private void ResetForNewGame()
+    {
+        weHaveWinner = false;
+    }
+
+    private void OnDisable()
+    {
+        playAgain.resetGame -= ResetForNewGame;
+    }
+
 }

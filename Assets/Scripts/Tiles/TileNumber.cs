@@ -9,8 +9,13 @@ public class TileNumber : MonoBehaviour {
 
 	void Awake()
     {
+        ShowNumber();
+    }
+
+    public void ShowNumber()
+    {
         GetComponent<TextMeshProUGUI>().text = tile.tileNumber.ToString();
-	}
+    }
 
     public void HideNumber()
     {

@@ -12,15 +12,15 @@ public class QuestionUI : MonoBehaviour
     [SerializeField] GameObject notAnsweredButton;
     [SerializeField] Timer timer;
 
-
     [SerializeField] QuestionList mainQuestionList;
     [SerializeField] QuestionList substituteQuestionList;
+
+    [HideInInspector] public string noMoreQuestions;
 
     public void DisplayNewQuestion(int tileState)
     {
         DisplayCorrectWrongButtons();
         DisplayQuestionText(tileState);
-        timer.StartTimer();
     }
 
     public void CleanQuestion(Player activePlayer)
@@ -37,7 +37,7 @@ public class QuestionUI : MonoBehaviour
     }
 
     #region text
-    private void DisplayActivePlayer(Player activePlayer)
+    public void DisplayActivePlayer(Player activePlayer)
     {
         activePlayerText.text = activePlayer.Name;
         activePlayerText.color = activePlayer.Color;
@@ -63,13 +63,15 @@ public class QuestionUI : MonoBehaviour
 
         if (currentQuestionList.list.Count > 0)
         {
+            timer.StartTimer();
             questionText.text = currentQuestionList.list[0];
             currentQuestionList.list.RemoveAt(0);
         }
         else
         {
-            questionText.text = "There are no more questions!";
-            //TO DO Option to quit game or load more questions(?)
+            timer.StopTimer();
+            HideAllButtons();
+            questionText.text = noMoreQuestions;
         }
     }
     #endregion

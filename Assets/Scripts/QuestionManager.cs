@@ -7,6 +7,7 @@ public class QuestionManager : MonoBehaviour
 {
     [SerializeField] PlayerList myPlayerList;
     [SerializeField] Timer timer;
+    [SerializeField] AudioPlayer audioPlayer;
 
     Player firstToAnswer;
     Player activePlayer;
@@ -19,11 +20,11 @@ public class QuestionManager : MonoBehaviour
     public delegate void BlockOrUnblockTile();
     public event BlockOrUnblockTile blockOrUnblockTile;
 
-    private void Start()
+    private void OnEnable()
     {
         questionUI = GetComponent<QuestionUI>();
         LoadActivePlayer();
-        questionUI.CleanQuestion(activePlayer);
+        questionUI.DisplayActivePlayer(activePlayer);
     }
 
     public void NewQuestion(int tileState)
@@ -35,7 +36,13 @@ public class QuestionManager : MonoBehaviour
         questionUI.DisplayNewQuestion(currentTileState);
     }
 
-    public void CorrectAnswer()
+    public void CorrectAnswerWithSound()
+    {
+        audioPlayer.PlayCorrectSound();
+        CorrectAnswer();
+    }
+
+    private void CorrectAnswer()
     {
         timer.StopTimer();
         if (changeTile != null)
@@ -47,12 +54,12 @@ public class QuestionManager : MonoBehaviour
         UnBlockAllTiles();
     }
 
-
     public void WrongAnswer()
     {
         timer.StopTimer();
         if (currentTileState == -1)
         {
+            audioPlayer.PlayWrongSound();
             if (activePlayer == firstToAnswer)
             {
                 ChangeActivePlayer();
@@ -71,6 +78,7 @@ public class QuestionManager : MonoBehaviour
         }
         else
         {
+            audioPlayer.PlayWrongSound();
             ChangeActivePlayer();
             CorrectAnswer();
         }
@@ -78,6 +86,7 @@ public class QuestionManager : MonoBehaviour
 
     public void NotAnswered()
     {
+        audioPlayer.PlayNotAnswered();
         if (changeTile != null)
         {
             changeTile(2, Color.gray);

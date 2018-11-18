@@ -12,4 +12,5 @@ public class Language : ScriptableObject
     public string errorText;
     public string playAgain;
     public string theWinnerIs;
+    public string noMoreQuestions;
 }

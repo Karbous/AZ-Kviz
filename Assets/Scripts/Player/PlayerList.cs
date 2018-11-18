@@ -1,17 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-[CreateAssetMenu(menuName = "Player List")]
-public class PlayerList : ScriptableObject
+public class PlayerList : MonoBehaviour
 {
     public Player[] players = new Player[2];
+    [SerializeField] TextMeshProUGUI player1Name;
+    [SerializeField] TextMeshProUGUI player2Name;
+    [SerializeField] PlayAgain playAgain;
 
     public int activePlayerIndex = 0;
+
+    private void Awake()
+    {
+        players[0] = new Player(Color.red);
+        players[1] = new Player(Color.blue);
+    }
+
+    private void OnEnable()
+    {
+        playAgain.resetGame += ClearEdgeTiles;
+    }
 
     public void SwitchActivePlayer()
     {
         if (activePlayerIndex == 0) activePlayerIndex = 1;
         else activePlayerIndex = 0;
     }
+
+    public void ReadPlayersNames()
+    {
+        players[0].Name = player1Name.text;
+        players[1].Name = player2Name.text;
+    }
+
+    private void ClearEdgeTiles()
+    {
+        foreach (Player player in players)
+        {
+            player.ClearEdgeTiles();
+        }
+    }
+
+    private void OnDisable()
+    {
+        playAgain.resetGame -= ClearEdgeTiles;
+    }
+
 }
