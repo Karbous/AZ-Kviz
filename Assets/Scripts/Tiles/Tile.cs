@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Tile : MonoBehaviour
 {
     [SerializeField] QuestionManager questionManager;
-    [SerializeField] PlayerList myPlayerList;
+    [SerializeField] PlayerList playerList;
     [SerializeField] Winner winner;
     [SerializeField] TileNumber tileNumberText;
     [SerializeField] AudioPlayer audioPlayer;
@@ -51,7 +51,7 @@ public class Tile : MonoBehaviour
     {
         if (leftEdge || rightEdge || bottomEdge)
         {
-            myPlayerList.players[myPlayerList.activePlayerIndex].AddTileToEdgeTiles(tileNumber);
+            playerList.players[playerList.activePlayerIndex].AddTileToEdgeTiles(tileNumber);
         }
         winner.CheckWinnerConditions();
     }
@@ -60,7 +60,7 @@ public class Tile : MonoBehaviour
     {
         if ((tileState == -1 || tileState == 2) && isBlocked == false)
         {
-            GetComponent<Image>().color = Color.yellow;
+            GetComponent<Image>().color = playerList.clickedTile;
             questionManager.changeTile += ChangeTile;
             StartCoroutine(PlayClickSoundAndLoadNewQuestion());
         }

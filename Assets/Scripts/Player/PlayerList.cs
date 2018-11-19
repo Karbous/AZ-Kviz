@@ -9,13 +9,17 @@ public class PlayerList : MonoBehaviour
     [SerializeField] TextMeshProUGUI player1Name;
     [SerializeField] TextMeshProUGUI player2Name;
     [SerializeField] PlayAgain playAgain;
+    [SerializeField] Color player1Color;
+    [SerializeField] Color player2Color;
+    public Color clickedTile;
+
 
     public int activePlayerIndex = 0;
 
     private void Awake()
     {
-        players[0] = new Player(Color.red);
-        players[1] = new Player(Color.blue);
+        players[0] = new Player(player1Color);
+        players[1] = new Player(player2Color);
     }
 
     private void OnEnable()
