@@ -11,5 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6e4fe063e2f3f4c8c72b84afffcd83, type: 3}
   m_Name: Spanish
   m_EditorClassIdentifier: 
-  newGame: 
-  quit: 
+  quit: Final
+  startGame: Empezar el juego
+  player1Name: jugador 1
+  player2Name: jugador 2
+  errorText: 'Imposible encontrar el archivo con las preguntas. Revise el archivo:'
+  playAgain: Jugar otra vez
+  theWinnerIs: Ganador
+  noMoreQuestions: Las preguntas se han acabado. Finalize el juego e inserte las preguntas
+    nuevas.

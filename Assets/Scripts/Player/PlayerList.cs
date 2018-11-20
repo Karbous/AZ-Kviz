@@ -12,6 +12,7 @@ public class PlayerList : MonoBehaviour
     [SerializeField] Color player1Color;
     [SerializeField] Color player2Color;
     public Color clickedTile;
+    public Color substituteTile;
 
 
     public int activePlayerIndex = 0;

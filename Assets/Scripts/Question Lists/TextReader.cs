@@ -12,16 +12,17 @@ public class TextReader : MonoBehaviour
     [SerializeField] QuestionList mainQuestionList;
     [SerializeField] QuestionList substituteQuestionList;
     [SerializeField] GameObject error;
+    [SerializeField] TextMeshProUGUI errorTextUI;
     [SerializeField] GameObject startGameButton;
     [HideInInspector] public string errorText;
 
 
-    void Awake()
+    void Start()
     {
         mainQuestionList.list.Clear();
         substituteQuestionList.list.Clear();
-        readPathMainQuestions = Application.dataPath + "/txt/hlavni_otazky.txt";
-        readPathSubstituteQuestions = Application.dataPath + "/txt/nahradni_otazky.txt";
+        readPathMainQuestions = Application.dataPath + "/otazky/hlavni_otazky.txt";
+        readPathSubstituteQuestions = Application.dataPath + "/otazky/nahradni_otazky.txt";
         ReadQuestionsTextFile(readPathMainQuestions, mainQuestionList);
         ReadQuestionsTextFile(readPathSubstituteQuestions, substituteQuestionList);
     }
@@ -47,7 +48,7 @@ public class TextReader : MonoBehaviour
         {
             startGameButton.SetActive(false);
             error.SetActive(true);
-            error.GetComponentInChildren<TextMeshProUGUI>().text += errorText + "\n" + readPath + "\n";
+            errorTextUI.text += errorText + "\n" + readPath + "\n";
         }
     }
 }

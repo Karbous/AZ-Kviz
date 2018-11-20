@@ -1,4 +1,5 @@
-* Øádky zaèínající * a prázné øádky budou ignorovány / Lines with * at the beginning and empty lines will be ignored.
+* Øádky zaèínající * a prázné øádky budou ignorovány. / Lines with * at the beginning and empty lines will be ignored.
+* Kadı øádek je jedna otázka. / Each line is a new question.
 SQuestion 1
 SQuestion 2
 SQuestion 3

@@ -31,6 +31,5 @@ public class TextManager : MonoBehaviour
         textReader.errorText = currentLanguage.errorText;
         gameEnd.theWinnerIs = currentLanguage.theWinnerIs;
         questionUI.noMoreQuestions = currentLanguage.noMoreQuestions;
-
     }
 }

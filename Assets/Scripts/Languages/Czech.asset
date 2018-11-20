@@ -15,7 +15,7 @@ MonoBehaviour:
   startGame: "Za\u010Dni hru"
   player1Name: "Jm\xE9no 1. hr\xE1\u010De"
   player2Name: "Jm\xE9no 2. hr\xE1\u010De"
-  errorText: "Soubor ot\xE1zek nenalzen! Zkontolujte soubor:"
+  errorText: "Soubor ot\xE1zek nenalezen! Zkontrolujte soubor:"
   playAgain: Hraj znovu
   theWinnerIs: "Vyhr\xE1v\xE1"
   noMoreQuestions: "Ot\xE1zky byly vy\u010Derp\xE1ny. Ukon\u010Dete hru a nahrajte

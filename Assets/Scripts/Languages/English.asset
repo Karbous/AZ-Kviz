@@ -17,5 +17,5 @@ MonoBehaviour:
   player2Name: Player 2 Name
   errorText: 'Questions file not found! Check file:'
   playAgain: Play Again
-  theWinnerIs: The winner is
+  theWinnerIs: Winner
   noMoreQuestions: There are no more questions! Quit game and load more questions.

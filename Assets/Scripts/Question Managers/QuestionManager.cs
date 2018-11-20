@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class QuestionManager : MonoBehaviour
 {
-    [SerializeField] PlayerList myPlayerList;
+    [SerializeField] PlayerList playerList;
     [SerializeField] Timer timer;
     [SerializeField] AudioPlayer audioPlayer;
 
@@ -47,7 +47,7 @@ public class QuestionManager : MonoBehaviour
         timer.StopTimer();
         if (changeTile != null)
         {
-            changeTile(myPlayerList.activePlayerIndex, activePlayer.Color);
+            changeTile(playerList.activePlayerIndex, activePlayer.Color);
         }
         ChangeActivePlayer();
         questionUI.CleanQuestion(activePlayer);
@@ -69,7 +69,7 @@ public class QuestionManager : MonoBehaviour
             {
                 if (changeTile != null)
                 {
-                    changeTile(2, Color.gray);
+                    changeTile(2, playerList.substituteTile);
                 }
                 ChangeActivePlayer();
                 questionUI.CleanQuestion(activePlayer);
@@ -98,13 +98,13 @@ public class QuestionManager : MonoBehaviour
 
     private void ChangeActivePlayer()
     {
-        myPlayerList.SwitchActivePlayer();
+        playerList.SwitchActivePlayer();
         LoadActivePlayer();
     }
 
     private void LoadActivePlayer()
     {
-        activePlayer = myPlayerList.players[myPlayerList.activePlayerIndex];
+        activePlayer = playerList.players[playerList.activePlayerIndex];
     }
 
 

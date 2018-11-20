@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Language.unity
     guid: b68999317d40a7441a52947b8c8e1892
   - enabled: 1
-    path: Assets/Scenes/Start.unity
-    guid: f9ae29c7da8a5f84ab83b7c4b1b08ad8
-  - enabled: 1
     path: Assets/Scenes/Game.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: f9ae29c7da8a5f84ab83b7c4b1b08ad8
   m_configObjects: {}
