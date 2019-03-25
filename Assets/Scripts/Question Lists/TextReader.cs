@@ -31,7 +31,7 @@ public class TextReader : MonoBehaviour
     {
         if (File.Exists(readPath))
         {
-            StreamReader streamReader = new StreamReader(readPath);
+            StreamReader streamReader = new StreamReader(readPath, System.Text.Encoding.Unicode);
 
             while (!streamReader.EndOfStream)
             {
