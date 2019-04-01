@@ -8,7 +8,7 @@ public class TimerSet : MonoBehaviour
     [SerializeField] Timer timer;
     [SerializeField] TextMeshProUGUI timeLimitText;
     [SerializeField] GameObject timeLimit;
-    [SerializeField] float upperTimerLimit = 20.0f;
+    [SerializeField] float upperTimerLimit = 60.0f;
     [SerializeField] float lowerTimerLimit = 1.0f;
 
     private void Start()
